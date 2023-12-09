@@ -1,4 +1,5 @@
-![image](https://github.com/1997ian/Currency-Converter/assets/92027960/66d2b5b2-0ec4-4508-96e9-83c50c92860b)<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
+![image](https://github.com/christianangon/Writer-Editor-Dashboard/assets/92027960/8d742141-c0f5-4840-a57e-4ff1cb44cbac)
+<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 <a name="readme-top"></a>
 <!--
 *** Thanks for checking out the Best-README-Template. If you have a suggestion
@@ -27,52 +28,24 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a> -->
 
-  <h3 align="center">Currency Converter</h3>
+  <h3 align="center">Writer-Editor-Dashboard</h3>
 
   <p align="center">
-    A simple currency converter featured by 35 countries, adding new currency, vuex store management, and second converter.
+    The Writer/Editor Dashboard Site is a web application designed to facilitate the creation, editing, and publishing of articles related to various companies. The system is implemented as a web-responsive front-end application using Vue.js, ensuring an optimal user experience across different devices.
     <br />
     <br />
     <br />
-    <a href="https://christianangon-currencyconverter.vercel.app/#/">View Demo</a>
+    <a href="https://writer-editor-dashboard.vercel.app/#/">View Demo</a>
   
   </p>
 </div>
 
 
-
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
-
-
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-A versatile and user-friendly currency converter built using PrimeVue,Vue 3, Vite, Vuex. Easily convert between 35 different countries, add custom currencies, and perform dual currency conversions with ease.
+A versatile and user-friendly writer-editor dashboard built using PrimeVue,Vue 3, Vite, Vuex.
+This project use https://github.com/christianangon/christian-json-server for mock server, build with json-server hosted by vercel.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -98,20 +71,15 @@ A versatile and user-friendly currency converter built using PrimeVue,Vue 3, Vit
 
 ### Installation
 
-1. Get a free API Key at https://openexchangerates.org/account/app-ids
-2. Clone the repo
+1. Clone the repo
    ```sh
-   git clone https://github.com/1997ian/Currency-Converter.git
+   git clone https://github.com/christianangon/Writer-Editor-Dashboard.git
    ```
-3. Install NPM packages
+2. Install NPM packages
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-5. Run the project
+3. Run the project
    ```sh
    npm run dev
    ```
@@ -120,46 +88,32 @@ A versatile and user-friendly currency converter built using PrimeVue,Vue 3, Vit
 
 
 <!-- USAGE EXAMPLES -->
-## Usage
+## Key Features
 
-**Step 1: Launch the Application**
+**User Management**
 
-Open your web browser and navigate to the URL where your currency converter application is hosted.
+-Two types of users: Writers and Editors.
+-Editors have the ability to add and update user profiles (writers and editors).
 
-**Step 2: Default Conversion**
+**Article Management**
 
-Upon launching the application, you will see the default conversion rate set to convert Philippine Peso (PHP) to United States Dollar (USD).
+-Writers can create articles, and the system automatically sets the article status to "For Edit" and assigns the writer.
+-Writers can edit their unpublished articles.
+-Editors can edit and publish articles.
+-The system distinguishes between articles in the "For Edit" and "Published" states.
 
-**Step 3: Changing Conversion**
+**Dashboard Views**
 
-To change the conversion, click on the dropdown menu labeled "I have" and select a different country from the list. This will change the source currency.
+Writer's Dashboard:
 
-Next, click on the dropdown menu labeled "I want" and select the currency to which you want to convert. This will change the target currency.
+    -Displays two lists of articles: "For Edit" and "Published" with relevant details.
+    -Provides writers with an overview of their articles.
+    
+Editor's Dashboard:
 
-As you change the source and target currencies, the conversion rate will automatically update to reflect the new currency pair.
-
-**Step 4: Performing Currency Conversion**
-
-Once you have selected the source and target currencies, enter the amount you want to convert in the input field provided. The application will instantly display the converted amount.
-
-**Step 5: Viewing Currency Rates**
-
-On the right side of the application, you will find a list of 35 different countries and their respective exchange rates. These rates are updated in real-time.
-
-**Step 6: Adding Your Own Currency**
-
-If you want to add a custom currency to the list, click on the "Add Currency" button in the top navigation bar.
-
-Fill out the form with the currency code (e.g., USD for United States Dollar), currency name (e.g., United States Dollar), and the current exchange rate.
-
-Make sure to follow any validation rules or requirements for the currency information.
-
-After submitting the form, the custom currency will be added to the list, and you can use it for conversions just like the predefined currencies.
-
-Step 7: Resetting the Conversion
-
-To reset the conversion and go back to the default setting (PHP to USD), simply refresh the page.
-
+    -Displays two lists of articles: "For Publish" and "Published" with key information.
+    -Editors can manage users and companies from the dashboard.
+    
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -169,10 +123,8 @@ To reset the conversion and go back to the default setting (PHP to USD), simply 
 
 - [x] Add Changelog
 - [x] Add back to top links
-- [ ] Add Reset button
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
+- [ ] Fixing update of users, company, and articles
+- [ ] Add some UI design more for flexibility
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -200,8 +152,6 @@ Don't forget to give the project a star! Thanks again!
 ## Contact
 
 LinkedIn - https://www.linkedin.com/in/christianangon/
-
-Project Link: https://github.com/1997ian/Currency-Converter
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
