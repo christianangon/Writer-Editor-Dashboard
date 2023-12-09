@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Ian
  * @Date: 2023-12-08 13:05:28
- * @LastEditTime: 2023-12-09 10:25:00
+ * @LastEditTime: 2023-12-09 13:59:26
  * @LastEditors: Ian
 -->
 <template>
@@ -11,7 +11,7 @@
       label="Create new user"
       icon="pi pi-plus"
       severity="help"
-      @click="handleCreateCompany"
+      @click="handleCreateUser"
       class="flex align-items-center justify-content-center h-4rem font-bold border-round mb-3"
     />
     <Button
