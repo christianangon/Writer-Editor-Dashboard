@@ -116,6 +116,9 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 
+import { QuillEditor } from "@vueup/vue-quill";
+import "@vueup/vue-quill/dist/vue-quill.snow.css";
+
 /* add icons to the library */
 library.add(fas);
 
@@ -131,7 +134,7 @@ app.use(PrimeVue, { ripple: true });
 app.use(ToastService);
 app.use(DialogService);
 app.use(ConfirmationService);
-
+app.use(QuillEditor);
 app.directive("tooltip", Tooltip);
 app.directive("badge", BadgeDirective);
 app.directive("ripple", Ripple);

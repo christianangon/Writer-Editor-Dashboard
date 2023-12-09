@@ -2,7 +2,7 @@
  * @Description:用户验证
  * @Author: Lewis
  * @Date: 2022-05-31 13:32:21
- * @LastEditTime: 2023-12-07 23:06:09
+ * @LastEditTime: 2023-12-09 09:58:29
  * @LastEditors: Ian
  */
 import {
@@ -14,8 +14,14 @@ import {
   removeUsername,
   getUserId,
   setUserId,
+  setRoles,
+  getRoles,
+  removeRoles,
+  setInfos,
+  getInfos,
+  removeInfos,
 } from "@/utils/auth";
-import { login, getInfo } from "../../api/user/auth";
+import { login, getInfo, logout } from "../../api/user/auth";
 import { defineComponent } from "vue";
 import { setToast } from "@/utils/auth";
 
@@ -28,11 +34,16 @@ const state = {
   globalToast: {},
   roles: [],
   permissions: [],
+  roles: getRoles(),
+  info: getInfos(),
 };
 
 const mutations = {
   SET_TOKEN: (state, token) => {
     state.token = token;
+  },
+  SET_ROLES: (state, info) => {
+    state.roles = roles;
   },
   SET_USER_NAME: (state, username) => {
     state.username = username;
@@ -69,10 +80,19 @@ const actions = {
         .then((response) => {
           const { data } = response;
           commit("SET_TOKEN", data.token);
+          commit("SET_ROLES", data.user.type);
           commit("SET_USER_NAME", username.trim());
           setUsername(username.trim());
           setToken(data.token);
+          setInfos(data.user.name);
+          setRoles(data.user.type);
           resolve();
+          defineComponent.$toast.add({
+            severity: "success",
+            summary: "Success Message",
+            detail: "Order submitted",
+            life: 3000,
+          });
         })
         .catch((error) => {
           reject(error);
@@ -80,21 +100,21 @@ const actions = {
     });
   },
   // user logout
-  // logout({ commit, state }) {
-  //   return new Promise((resolve, reject) => {
-  //     logout(state.token)
-  //       .then(() => {
-  //         commit("SET_TOKEN", "");
-  //         removeToken();
-  //         removeUsername();
-  //         window.sessionStorage.clear();
-  //         resolve();
-  //       })
-  //       .catch((error) => {
-  //         reject(error);
-  //       });
-  //   });
-  // },
+  logout({ commit, getters }) {
+    const token = getters.getToken;
+
+    // Perform any other cleanup if needed
+
+    // Clear the token
+    commit("SET_TOKEN", "");
+    removeToken();
+    removeUsername();
+    removeRoles();
+    removeInfos();
+
+    // Resolve immediately since we don't need to wait for a server response
+    return Promise.resolve();
+  },
   // get user info
   getInfo({ commit }) {
     return new Promise((resolve, reject) => {

@@ -2,15 +2,19 @@
  * @Description: login with user
  * @Author: Lewis
  * @Date: 2022-06-02 15:12:57
- * @LastEditTime: 2023-12-07 22:45:05
+ * @LastEditTime: 2023-12-08 16:19:08
  * @LastEditors: Ian
 -->
 <template>
-  <div class="flex justify-content-center">
+  <div
+    class="flex justify-content-center"
+    :style="{ 'background-color': 'black' }"
+  >
     <Toast />
     <Dialog
       v-model:visible="visible"
       modal
+      :class="{ 'custom-dialog': true }"
       :closable="false"
       :style="{ width: '40vw' }"
       :breakpoints="{ '1199px': '75vw', '575px': '90vw' }"
@@ -59,27 +63,14 @@
 import { useStore } from "vuex";
 import { computed, ref } from "vue";
 import { useRouter } from "vue-router";
-import { required, helpers } from "@vuelidate/validators";
-import { useVuelidate } from "@vuelidate/core";
 import { useToast } from "primevue/usetoast";
 
 export default {
   name: "LoginUsername",
-  validations() {
-    return {
-      username: {
-        required: helpers.withMessage("common.canNotEmpty", required),
-      },
-      password: {
-        required: helpers.withMessage("common.canNotEmpty", required),
-      },
-    };
-  },
   setup(props, context) {
     const store = useStore();
     // eslint-disable-next-line no-unused-vars
     const router = useRouter();
-    const v$ = useVuelidate();
     const visible = ref(true);
     const username = ref("");
     const password = ref("");
@@ -89,16 +80,6 @@ export default {
 
     function handleLoginSubmit() {
       submitted.value = true;
-      if (username.value.length <= 0 || password.value.length <= 0) {
-        setTimeout(() => {
-          toast.add({
-            severity: "success",
-            summary: "Success",
-            detail: "API Key is valid. Proceeding...",
-            life: 3000,
-          });
-        }, 1000);
-      }
       let params = {
         username: username.value,
         password: password.value,
@@ -112,9 +93,18 @@ export default {
             detail: "Successfully login. Proceeding...",
             life: 3000,
           });
+          setTimeout(() => {
+            router.go("/");
+          }, 100);
         })
         .catch((err) => {
           console.log("err", err);
+          toast.add({
+            severity: "error",
+            summary: "Error",
+            detail: "Invalid user. Try again...",
+            life: 3000,
+          });
         });
     }
 
@@ -123,7 +113,6 @@ export default {
     }
 
     return {
-      v$,
       visible,
       username,
       password,
@@ -136,27 +125,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.login-btn {
-  padding: 0 7px;
-}
-.login-oa-btn {
-  height: 42px;
-  margin: 0 7px;
-  &:hover {
-    cursor: pointer;
-    opacity: 0.8;
-  }
-}
-.show-pass {
-  &:hover {
-    cursor: pointer;
-    opacity: 0.8;
-  }
-}
-@media only screen and (max-width: 768px) {
-  .login-form__with-username {
-    width: 100% !important;
-  }
+<style lang="scss">
+.p-component-overlay {
+  background-color: gray !important; /* Set the background color here */
+  opacity: 10; /* Adjust the opacity as needed */
 }
 </style>

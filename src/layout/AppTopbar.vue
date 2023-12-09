@@ -2,7 +2,8 @@
 import { ref, computed, onMounted, onBeforeUnmount } from "vue";
 import { useLayout } from "@/layout/composables/layout";
 import { useRouter } from "vue-router";
-
+import { useStore } from "vuex";
+import { useToast } from "primevue/usetoast";
 const { layoutConfig, onMenuToggle } = useLayout();
 
 const outsideClickListener = ref(null);
@@ -52,6 +53,7 @@ const unbindOutsideClickListener = () => {
     outsideClickListener.value = null;
   }
 };
+const store = useStore();
 const isOutsideClicked = (event) => {
   if (!topbarMenuActive.value) return;
 
@@ -65,6 +67,29 @@ const isOutsideClicked = (event) => {
     topbarEl.contains(event.target)
   );
 };
+
+const toast = useToast();
+
+const handleLogoutSubmit = () => {
+  store
+    .dispatch("auth/logout")
+    .then(() => {
+      toast.add({
+        severity: "success",
+        summary: "Success",
+        detail: "Successfully logout. Proceeding...",
+        life: 3000,
+      });
+      router.go("/login");
+    })
+    .catch((err) => {
+      console.log("err", err);
+    });
+};
+
+const username = computed(() => {
+  return store.state.auth.username;
+});
 </script>
 
 <template>
@@ -74,7 +99,7 @@ const isOutsideClicked = (event) => {
         src="https://cdn-icons-png.flaticon.com/512/12/12139.png"
         alt="logo"
       />
-      <span>CHRISTIAN</span>
+      <span>Welcome, {{ username }} </span>
     </router-link>
 
     <button
@@ -85,9 +110,9 @@ const isOutsideClicked = (event) => {
     </button>
 
     <div class="layout-topbar-menu" :class="topbarMenuClasses">
-      <button @click="onTopBarMenuButton()" class="p-link layout-topbar-button">
+      <button @click="handleLogoutSubmit" class="p-link layout-topbar-button">
         <i class="pi pi-sign-out"></i>
-        <span>Profile</span>
+        <span>Logout</span>
       </button>
     </div>
   </div>

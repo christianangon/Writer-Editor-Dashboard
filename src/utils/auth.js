@@ -2,7 +2,7 @@
  * @Description: auth
  * @Author: Lewis
  * @Date: 2022-06-07 17:57:41
- * @LastEditTime: 2023-12-07 23:19:40
+ * @LastEditTime: 2023-12-09 09:56:21
  * @LastEditors: Ian
  */
 import Cookies from "js-cookie";
@@ -11,6 +11,8 @@ import store from "../store";
 const TokenKey = "tokenKey";
 const UsernameKey = "usernameKey";
 const userIdKey = "userIdKey";
+const RolesKey = "rolesKey";
+const InfoKey = "infoKey";
 
 export function getToken() {
   return Cookies.get(TokenKey);
@@ -33,6 +35,30 @@ export function getUsername() {
 
 export function removeUsername() {
   return Cookies.remove(UsernameKey);
+}
+
+export function setRoles(roles) {
+  return Cookies.set(RolesKey, roles);
+}
+
+export function getRoles() {
+  return Cookies.get(RolesKey);
+}
+
+export function removeRoles() {
+  return Cookies.remove(RolesKey);
+}
+
+export function setInfos(info) {
+  return Cookies.set(InfoKey, info);
+}
+
+export function getInfos() {
+  return Cookies.get(InfoKey);
+}
+
+export function removeInfos() {
+  return Cookies.remove(InfoKey);
 }
 
 export function setUserId(id) {
