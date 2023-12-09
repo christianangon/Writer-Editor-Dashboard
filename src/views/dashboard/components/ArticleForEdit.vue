@@ -48,7 +48,8 @@
         </template>
       </Column>
       <template #footer>
-        In total there are {{ articles ? articles.length : 0 }} articles.
+        In total there are
+        {{ articlesForEdit ? articlesForEdit.length : 0 }} articles.
       </template>
     </DataTable>
     <CreateArticleForm ref="CreateArticleForm" />

@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Ian
  * @Date: 2023-12-08 13:49:57
- * @LastEditTime: 2023-12-09 10:46:15
+ * @LastEditTime: 2023-12-09 14:12:00
  * @LastEditors: Ian
 -->
 <template>
@@ -113,6 +113,7 @@
 import { getCompany } from "../../../api/company/index";
 import store from "../../../store/index";
 import { QuillEditor } from "@vueup/vue-quill";
+import { createArticle, updateArticle } from "../../../api/article/index";
 export default {
   components: { QuillEditor },
   data() {
@@ -201,6 +202,10 @@ export default {
         ...this.form,
         writer: this.infos,
       };
+      createArticle(params).then((res) => {
+        console.log("res", res);
+        this.handleDialogClose();
+      });
       console.log("form", params);
     },
     handleSave() {
@@ -210,6 +215,10 @@ export default {
         writer: this.editData.writer,
         editor: this.editData.editor ? this.editData.editor : null,
       };
+      updateArticle(params).then((res) => {
+        console.log("res", res);
+        this.handleDialogClose();
+      });
       console.log("form", params);
     },
     handlePublished() {
@@ -220,6 +229,10 @@ export default {
         writer: this.editData.writer,
         editor: this.infos,
       };
+      updateArticle(params).then((res) => {
+        console.log("res", res);
+        this.handleDialogClose();
+      });
       console.log("form", params);
     },
     formatDate(date) {

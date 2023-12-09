@@ -53,7 +53,7 @@
                   <Button
                     icon="pi pi-file-edit"
                     label="Edit"
-                    :disabled="slotProps.data.inventoryStatus === 'OUTOFSTOCK'"
+                    @click="handleEdit(slotProps.data)"
                     class="mb-2"
                   ></Button>
                 </div>

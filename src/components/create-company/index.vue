@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Ian
  * @Date: 2023-12-08 15:55:44
- * @LastEditTime: 2023-12-09 09:28:52
+ * @LastEditTime: 2023-12-09 14:28:17
  * @LastEditors: Ian
 -->
 <template>
@@ -40,13 +40,12 @@
       </div>
       <div class="field col-12 md:col-12">
         <label for="name">Logo</label>
-        <FileUpload
-          mode="basic"
-          name="demo[]"
-          url="/api/upload"
-          accept="image/*"
-          customUpload
-          @uploader="customBase64Uploader"
+        <InputText
+          id="name"
+          placeholder="url"
+          type="text"
+          v-model="form.logo"
+          :class="!form.logo ? 'p-invalid' : ''"
         />
       </div>
 
@@ -60,7 +59,7 @@
 </template>
 
 <script>
-import { createUser } from "../../api/user/auth";
+import { createCompany } from "../../api/company/index";
 export default {
   name: "CreateCompany",
   data() {
@@ -89,7 +88,7 @@ export default {
         });
         return; // Do not proceed with form submission
       }
-      createUser(this.form).then((res) => {
+      createCompany(this.form).then((res) => {
         console.log("res", res);
         this.handleDialogClose();
       });

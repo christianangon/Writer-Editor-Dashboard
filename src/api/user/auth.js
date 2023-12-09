@@ -2,7 +2,7 @@
  * @Description:
  * @Author: Ian
  * @Date: 2023-12-07 20:06:41
- * @LastEditTime: 2023-12-08 16:30:26
+ * @LastEditTime: 2023-12-09 14:06:39
  * @LastEditors: Ian
  */
 import request from "../request";
@@ -25,7 +25,21 @@ export function logout(data) {
 
 export function createUser(data) {
   return request({
-    url: "/api/users",
+    url: "/api/users/create",
+    method: "post",
+    data,
+  });
+}
+export function updateUser(data) {
+  return request({
+    url: "/api/users/edit",
+    method: "post",
+    data,
+  });
+}
+export function deleteUser(data) {
+  return request({
+    url: "/api/users/delete",
     method: "post",
     data,
   });

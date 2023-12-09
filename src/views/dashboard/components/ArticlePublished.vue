@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Ian
  * @Date: 2023-12-08 17:21:57
- * @LastEditTime: 2023-12-08 23:55:04
+ * @LastEditTime: 2023-12-09 14:30:35
  * @LastEditors: Ian
 -->
 <template>
@@ -49,7 +49,8 @@
         </template>
       </Column>
       <template #footer>
-        In total there are {{ articles ? articles.length : 0 }} articles.
+        In total there are
+        {{ articlesPublished ? articlesPublished.length : 0 }} articles.
       </template>
     </DataTable>
     <CreateArticleForm ref="CreateArticleForm" />
