@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Ian
  * @Date: 2023-12-08 13:49:57
- * @LastEditTime: 2023-12-09 14:12:00
+ * @LastEditTime: 2023-12-10 15:48:32
  * @LastEditors: Ian
 -->
 <template>
@@ -198,6 +198,22 @@ export default {
       }
     },
     handleCreate() {
+      if (
+        !this.form.title ||
+        !this.form.link ||
+        !this.form.date ||
+        !this.form.company ||
+        !this.form.content
+      ) {
+        // Show a toast indicating the missing fields
+        this.$toast.add({
+          severity: "error",
+          summary: "Error",
+          detail: "Please fill in all fields.",
+          life: 3000,
+        });
+        return; // Do not proceed with form submission
+      }
       let params = {
         ...this.form,
         writer: this.infos,
@@ -209,6 +225,22 @@ export default {
       console.log("form", params);
     },
     handleSave() {
+      if (
+        !this.form.title ||
+        !this.form.link ||
+        !this.form.date ||
+        !this.form.company ||
+        !this.form.content
+      ) {
+        // Show a toast indicating the missing fields
+        this.$toast.add({
+          severity: "error",
+          summary: "Error",
+          detail: "Please fill in all fields.",
+          life: 3000,
+        });
+        return; // Do not proceed with form submission
+      }
       let params = {
         ...this.form,
         id: this.editData.id,
@@ -222,6 +254,22 @@ export default {
       console.log("form", params);
     },
     handlePublished() {
+      if (
+        !this.form.title ||
+        !this.form.link ||
+        !this.form.date ||
+        !this.form.company ||
+        !this.form.content
+      ) {
+        // Show a toast indicating the missing fields
+        this.$toast.add({
+          severity: "error",
+          summary: "Error",
+          detail: "Please fill in all fields.",
+          life: 3000,
+        });
+        return; // Do not proceed with form submission
+      }
       let params = {
         id: this.editData.id,
         ...this.form,
